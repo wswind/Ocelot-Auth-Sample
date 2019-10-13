@@ -12,6 +12,7 @@ namespace api1.Controllers
     public class ValuesController : ControllerBase
     {
         // GET api/values
+        //[Authorize]
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
