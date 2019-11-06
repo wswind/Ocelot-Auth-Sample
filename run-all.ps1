@@ -13,3 +13,4 @@ foreach ($solutionPath in $solutionPaths) {
 }
 
 Set-Location $rootFolder
+exit
