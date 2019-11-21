@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,32 +30,18 @@ namespace ocelothost
         {
             var identityUrl = "http://localhost:5000";
             var authenticationProviderKey = "IdentityApiKey";
+            string scope = "api1";
 
-            services.AddAuthentication()
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(authenticationProviderKey, x =>
                 {
                     x.Authority = identityUrl;
                     x.RequireHttpsMetadata = false;
-                    x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-                    {
-                        ValidAudiences = new[] { "api1" }
-                    };
-                    x.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents()
-                    {
-                        OnAuthenticationFailed = async ctx =>
-                        {
-                            int i = 0;
-                        },
-                        OnTokenValidated = async ctx =>
-                        {
-                            int i = 0;
-                        },
-
-                        OnMessageReceived = async ctx =>
-                        {
-                            int i = 0;
-                        }
-                    };
+                    x.Audience = scope;
+                    //x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    //{
+                    //    ValidAudiences = new[] { "api1" }
+                    //};
                 });
 
 

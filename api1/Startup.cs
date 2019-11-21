@@ -39,22 +39,22 @@ namespace api1
         }
 
 
-        private void ConfigureAuthService(IServiceCollection services)
-        {
-            // prevent from mapping "sub" claim to nameidentifier.
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+        //private void ConfigureAuthService(IServiceCollection services)
+        //{
+        //    // prevent from mapping "sub" claim to nameidentifier.
+        //    JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        //    services.AddAuthentication(options =>
+        //    {
+        //        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        //        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            }).AddJwtBearer(options =>
-            {
-                options.Authority = "http://localhost:5000";
-                options.Audience = "api1";
-                options.RequireHttpsMetadata = false;
-            });
-        }
+        //    }).AddJwtBearer(options =>
+        //    {
+        //        options.Authority = "http://localhost:5000";
+        //        options.Audience = "api1";
+        //        options.RequireHttpsMetadata = false;
+        //    });
+        //}
     }
 }
